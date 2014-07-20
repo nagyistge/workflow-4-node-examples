@@ -1,0 +1,32 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Microsoft.Samples.CorrelatedCalculator.CalculatorClient" xmlns:View="clr-namespace:Microsoft.Samples.CorrelatedCalculator.CalculatorClient.View" x:Class="Microsoft.Samples.CorrelatedCalculator.CalculatorClient.CalculatorUI" 
+             mc:Ignorable="d" Height="545" Loaded="UserControl_Loaded" Width="312">
+    <Grid>
+        <TextBox Height="26" Width="190" Margin="30,6,0,0" x:Name="Display" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF8F8FF" HorizontalContentAlignment="Right"/>
+        <Button FontSize="14" Height="37" HorizontalAlignment="Left" Margin="30,51,0,0" x:Name="Button1" VerticalAlignment="Top" Width="37" Click="UpdateDisplay" Content="1"/>
+        <Button FontSize="14" Height="37" HorizontalAlignment="Left" Margin="75,51,0,0" x:Name="Button2" VerticalAlignment="Top" Width="37" Click="UpdateDisplay" Content="2"/>
+        <Button FontSize="14" Height="37" HorizontalAlignment="Left" Margin="120,51,0,0" x:Name="Button3" VerticalAlignment="Top" Width="37" Click="UpdateDisplay" Content="3"/>
+        <Button FontSize="14" Height="37" HorizontalAlignment="Left" Margin="185,51,0,0" x:Name="ButtonAdd" VerticalAlignment="Top" Width="37" Click="DoOperation" Content="+"/>
+        <Button FontSize="14" Height="37" HorizontalAlignment="Left" Margin="30,96,0,0" x:Name="Button4" VerticalAlignment="Top" Width="37" Click="UpdateDisplay" Content="4"/>
+        <Button FontSize="14" Height="37" HorizontalAlignment="Left" Margin="75,96,0,0" x:Name="Button5" VerticalAlignment="Top" Width="37" Click="UpdateDisplay" Content="5"/>
+        <Button FontSize="14" Height="37" HorizontalAlignment="Left" Margin="120,96,0,0" x:Name="Button6" VerticalAlignment="Top" Width="37" Click="UpdateDisplay" Content="6"/>
+        <Button FontSize="14" Height="37" HorizontalAlignment="Left" Margin="185,96,0,0" x:Name="ButtonSub" VerticalAlignment="Top" Width="37" Click="DoOperation" Content="-"/>
+        <Button FontSize="14" Height="37" HorizontalAlignment="Left" Margin="30,141,0,0" x:Name="Button7" VerticalAlignment="Top" Width="37" Click="UpdateDisplay" Content="7"/>
+        <Button FontSize="14" Height="37" HorizontalAlignment="Left" Margin="75,141,0,0" x:Name="Button8" VerticalAlignment="Top" Width="37" Click="UpdateDisplay" Content="8"/>
+        <Button FontSize="14" Height="37" HorizontalAlignment="Left" Margin="120,141,0,0" x:Name="Button9" VerticalAlignment="Top" Width="37" Click="UpdateDisplay" Content="9"/>
+        <Button FontSize="14" Height="37" HorizontalAlignment="Left" Margin="185,141,0,0" x:Name="ButtonMul" VerticalAlignment="Top" Width="37" Click="DoOperation" Content="x"/>
+        <Button FontSize="14" HorizontalAlignment="Left" Margin="30,186,0,0" x:Name="ButtonC" VerticalAlignment="Top" Width="37" Height="37" Click="Reset" Content="C"/>
+        <Button FontSize="14" HorizontalAlignment="Left" Margin="75,186,0,0" x:Name="Button0" VerticalAlignment="Top" Width="37" Height="37" Click="UpdateDisplay" Content="0"/>
+        <Button FontSize="14" HorizontalAlignment="Left" Margin="120,186,0,0" x:Name="ButtonEqual" VerticalAlignment="Top" Width="37" Height="37" Click="DoOperation" Content="="/>
+        <Button FontSize="14" HorizontalAlignment="Left" Margin="185,186,0,0" x:Name="ButtonDiv" VerticalAlignment="Top" Width="37" Height="37" Click="DoOperation" Content="/"/>
+        <Label Content="Last call time (ms):" HorizontalAlignment="Left" Margin="30,240,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="142,245,0,0" TextWrapping="Wrap" Text="{Binding LastCallTime, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CalculatorUI}}}" VerticalAlignment="Top"/>
+
+        <View:SpeedTestView x:Name="speedTest" HorizontalAlignment="Left" Margin="10,260,0,0" VerticalAlignment="Top" Width="292"/>
+
+    </Grid>
+</UserControl>

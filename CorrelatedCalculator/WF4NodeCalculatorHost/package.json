@@ -1,0 +1,18 @@
+{
+  "name": "WF4NodeCalculatorHost",
+  "version": "0.0.0",
+  "description": "WF4NodeCalculatorHost",
+  "main": "app.js",
+  "author": {
+    "name": "gabor",
+    "email": ""
+  },
+  "dependencies": {
+    "express": "^3.14.0",
+    "jade": "*",
+    "lodash": "^2.4.1",
+    "stylus": "*",
+    "workflow-4-node": "^0.1.2"
+  },
+  "devDependencies": {}
+}
