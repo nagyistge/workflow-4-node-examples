@@ -152,7 +152,6 @@ namespace Microsoft.Samples.CorrelatedCalculator.CalculatorClient.ViewModel
             IsRunning = true;
             EllapsedMilliseconds = MillisecondsPerCall = null;
             var sw = new Stopwatch();
-            sw.Start();
             Max = IterationCount * ParallelCount;
             Current = 0;
             int callCount = 0;
@@ -169,19 +168,26 @@ namespace Microsoft.Samples.CorrelatedCalculator.CalculatorClient.ViewModel
             }
             try
             {
+                // Warmup:
+                await Calculate(client, id.ToString());
+                id++;
+
                 for (int c = 0; c < IterationCount; c++)
                 {
+                    sw.Start();
                     for (int i = 0; i < ParallelCount; i++, id++)
                     {
                         Func<Task> call = async () =>
                         {
                             await Calculate(client, id.ToString());
+                            
                             Current++;
                             callCount += 6;
                         };
                         tasks.Add(call());
                     }
                     await Task.WhenAll(tasks);
+                    sw.Stop();
                     tasks.Clear();
                 }
                 if (co != null) co.Close();
@@ -195,7 +201,6 @@ namespace Microsoft.Samples.CorrelatedCalculator.CalculatorClient.ViewModel
                 MessageBox.Show("Error: " + ex.ToString());
                 if (co != null) co.Abort();
             }
-            sw.Stop();
             MillisecondsPerCall = (EllapsedMilliseconds = sw.Elapsed.TotalMilliseconds) / callCount;
             IsRunning = false;
             Max = Current = 0;
