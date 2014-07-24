@@ -1,6 +1,7 @@
 // MongoDb connection string:
-//var connStr = "mongodb://localhost/calculator";
-var connStr = "mongodb://swiiis01/calculator";
+
+var connStr = "mongodb://localhost/calculator";
+//var connStr = "mongodb://swiiis01/calculator";
 
 var WorkflowHost = require("workflow-4-node").hosting.WorkflowHost;
 var MongoDDPersistence = require("workflow-4-node").hosting.mongoDB.MongoDDPersistence;
