@@ -1,7 +1,7 @@
-﻿require('nodetime').profile({
-    accountKey: '8efd999a311ceefae50cbe8896ff23c045b2db2b',
-    appName: 'Correlated Calculator'
-});
+﻿//require('nodetime').profile({
+//    accountKey: '8efd999a311ceefae50cbe8896ff23c045b2db2b',
+//    appName: 'Correlated Calculator'
+//});
 
 /**
  * Module dependencies.
