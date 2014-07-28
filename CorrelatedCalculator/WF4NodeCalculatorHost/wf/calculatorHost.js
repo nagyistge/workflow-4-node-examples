@@ -1,5 +1,4 @@
 // MongoDb connection string:
-
 var connStr = "mongodb://localhost/calculator";
 //var connStr = "mongodb://swiiis01/calculator";
 
