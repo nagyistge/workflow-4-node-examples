@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorService", "CalculatorService\CalculatorService.csproj", "{EB9C94B9-91B4-4F66-9763-6CE637901145}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorClient", "CalculatorClient\CalculatorClient.csproj", "{4478209A-2569-4330-B879-001527D1505A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{45C184E7-C707-4C49-9A90-3E815496C7C6} = {45C184E7-C707-4C49-9A90-3E815496C7C6}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorIISHost", "CalculatorIISHost\CalculatorIISHost.csproj", "{45C184E7-C707-4C49-9A90-3E815496C7C6}"
 EndProject

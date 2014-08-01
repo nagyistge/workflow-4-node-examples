@@ -12,9 +12,6 @@
     "jade": "*",
     "lodash": "^2.4.1",
     "stylus": "*",
-    "workflow-4-node": "^0.1.2"
-  },
-  "devDependencies": {
-    "nodetime": "^0.8.15"
+    "workflow-4-node": "^0.1.17"
   }
 }

@@ -210,10 +210,10 @@ namespace Microsoft.Samples.CorrelatedCalculator.CalculatorClient.ViewModel
         private async Task Calculate(ICalculator client, string id)
         {
             cancel.Token.ThrowIfCancellationRequested();
-            await client.AddAsync(100.0, id);
-            await client.DivideAsync(1.0, id);
-            await client.MultiplyAsync(100.0, id);
-            await client.SubtractAsync(1.0, id);
+            await client.AddAsync(new AddRequest(100.0, id));
+            await client.DivideAsync(new DivideRequest(1.0, id));
+            await client.MultiplyAsync(new MultiplyRequest(100.0, id));
+            await client.SubtractAsync(new SubtractRequest(1.0, id));
             await client.EqualsAsync(id);
             await client.ResetAsync(id);
         }
