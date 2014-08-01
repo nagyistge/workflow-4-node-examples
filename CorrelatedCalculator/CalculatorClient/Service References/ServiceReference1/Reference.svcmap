@@ -19,13 +19,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8080/CalculatorService" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:6666/CalculatorService.xamlx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="CalculatorService.xsd" MetadataType="Schema" ID="92dd00ae-dd44-4b84-957f-1e4145f14316" SourceId="1" SourceUrl="http://localhost:8080/CalculatorService?xsd=xsd0" />
-    <MetadataFile FileName="CalculatorService.disco" MetadataType="Disco" ID="2620aa57-55da-41ee-bfa2-339fb1553571" SourceId="1" SourceUrl="http://localhost:8080/CalculatorService?disco" />
-    <MetadataFile FileName="CalculatorService1.xsd" MetadataType="Schema" ID="391fc7e2-607a-4b04-bb75-6b8ff454e600" SourceId="1" SourceUrl="http://localhost:8080/CalculatorService?xsd=xsd1" />
-    <MetadataFile FileName="CorrelatedCalculator.wsdl" MetadataType="Wsdl" ID="dfedfc33-bd02-493a-858c-ee7b4e0953e2" SourceId="1" SourceUrl="http://localhost:8080/CalculatorService?wsdl" />
+    <MetadataFile FileName="CalculatorService.wsdl" MetadataType="Wsdl" ID="5f2ac889-2a72-4dc5-bd60-613cf2c86ad9" SourceId="1" SourceUrl="http://localhost:6666/CalculatorService.xamlx?wsdl" />
+    <MetadataFile FileName="CalculatorService2.xsd" MetadataType="Schema" ID="a9c8d74f-4768-428d-bd62-4faf479cd816" SourceId="1" SourceUrl="http://localhost:6666/CalculatorService.xamlx?xsd=xsd0" />
+    <MetadataFile FileName="CalculatorService1.disco" MetadataType="Disco" ID="051dcf3e-0f2e-4651-93e5-1b8005164fc8" SourceId="1" SourceUrl="http://localhost:6666/CalculatorService.xamlx?disco" />
+    <MetadataFile FileName="CalculatorService21.xsd" MetadataType="Schema" ID="b1ee5710-3474-470e-bf9d-5d0fa4d9fcdf" SourceId="1" SourceUrl="http://localhost:6666/CalculatorService.xamlx?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

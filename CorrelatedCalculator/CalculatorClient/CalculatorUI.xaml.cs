@@ -1,4 +1,5 @@
-﻿using Microsoft.Samples.CorrelatedCalculator.CalculatorClient.ViewModel;
+﻿using Microsoft.Samples.CorrelatedCalculator.CalculatorClient.ServiceReference1;
+using Microsoft.Samples.CorrelatedCalculator.CalculatorClient.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -116,9 +117,9 @@ namespace Microsoft.Samples.CorrelatedCalculator.CalculatorClient
                     switch (previousOp)
                     {
                         case "=": { break; }
-                        case "+": { Client.Add(value, CalculatorId.ToString()); called = true; break; }
-                        case "-": { Client.Subtract(value, CalculatorId.ToString()); called = true; break; }
-                        case "x": { Client.Multiply(value, CalculatorId.ToString()); called = true; break; }
+                        case "+": { Client.Add(new AddRequest(value, CalculatorId.ToString())); called = true; break; }
+                        case "-": { Client.Subtract(new SubtractRequest(value, CalculatorId.ToString())); called = true; break; }
+                        case "x": { Client.Multiply(new MultiplyRequest(value, CalculatorId.ToString())); called = true; break; }
                         case "/":
                             {
                                 if (value == 0)
@@ -131,7 +132,7 @@ namespace Microsoft.Samples.CorrelatedCalculator.CalculatorClient
                                 }
                                 else
                                 {
-                                    Client.Divide(value, CalculatorId.ToString());
+                                    Client.Divide(new DivideRequest(value, CalculatorId.ToString()));
                                     called = true;
                                     break;
                                 }

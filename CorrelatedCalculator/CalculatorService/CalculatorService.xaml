@@ -45,6 +45,7 @@
   <Sequence DisplayName="CorrelatedCalculator" sap2010:WorkflowViewState.IdRef="Sequence_6">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Default="[True]" Name="Running" />
+      <Variable x:TypeArguments="p:CorrelationHandle" x:Name="__ReferenceID3" Name="__handle1" />
     </Sequence.Variables>
     <While sap2010:WorkflowViewState.IdRef="While_1">
       <While.Variables>
@@ -56,7 +57,7 @@
       <Pick sap2010:WorkflowViewState.IdRef="Pick_1">
         <PickBranch sap2010:WorkflowViewState.IdRef="PickBranch_1">
           <PickBranch.Trigger>
-            <p:Receive CanCreateInstance="True" CorrelatesWith="[calculatorIdHandle]" DisplayName="ReceiveAdd" sap2010:WorkflowViewState.IdRef="Receive_1" OperationName="Add" ServiceContractName="ICalculator">
+            <p:Receive x:Name="__ReferenceID0" CanCreateInstance="True" CorrelatesWith="[calculatorIdHandle]" DisplayName="ReceiveAdd" sap2010:WorkflowViewState.IdRef="Receive_1" OperationName="Add" ServiceContractName="ICalculator">
               <p:Receive.CorrelatesOn>
                 <p:XPathMessageQuery x:Key="CalcId">
                   <p:XPathMessageQuery.Namespaces>
@@ -80,12 +81,12 @@
                 <InArgument x:TypeArguments="x:Double">[CurrentValue + InputValue]</InArgument>
               </Assign.Value>
             </Assign>
-            <Persist sap2010:WorkflowViewState.IdRef="Persist_1" />
+            <p:SendReply Request="{x:Reference __ReferenceID0}" DisplayName="SendReplyToReceiveAdd" sap2010:WorkflowViewState.IdRef="SendReply_2" PersistBeforeSend="True" />
           </Sequence>
         </PickBranch>
         <PickBranch sap2010:WorkflowViewState.IdRef="PickBranch_2">
           <PickBranch.Trigger>
-            <p:Receive CanCreateInstance="True" CorrelatesWith="[calculatorIdHandle]" DisplayName="ReceiveSubtract" sap2010:WorkflowViewState.IdRef="Receive_2" OperationName="Subtract" ServiceContractName="ICalculator">
+            <p:Receive x:Name="__ReferenceID1" CanCreateInstance="True" CorrelatesWith="[calculatorIdHandle]" DisplayName="ReceiveSubtract" sap2010:WorkflowViewState.IdRef="Receive_2" OperationName="Subtract" ServiceContractName="ICalculator">
               <p:Receive.CorrelatesOn>
                 <p:XPathMessageQuery x:Key="CalcId">
                   <p:XPathMessageQuery.Namespaces>
@@ -109,12 +110,12 @@
                 <InArgument x:TypeArguments="x:Double">[CurrentValue - InputValue]</InArgument>
               </Assign.Value>
             </Assign>
-            <Persist sap2010:WorkflowViewState.IdRef="Persist_2" />
+            <p:SendReply Request="{x:Reference __ReferenceID1}" DisplayName="SendReplyToReceiveSubtract" sap2010:WorkflowViewState.IdRef="SendReply_3" PersistBeforeSend="True" />
           </Sequence>
         </PickBranch>
         <PickBranch sap2010:WorkflowViewState.IdRef="PickBranch_3">
           <PickBranch.Trigger>
-            <p:Receive CanCreateInstance="True" CorrelatesWith="[calculatorIdHandle]" DisplayName="ReceiveMultiply" sap2010:WorkflowViewState.IdRef="Receive_3" OperationName="Multiply" ServiceContractName="ICalculator">
+            <p:Receive x:Name="__ReferenceID2" CanCreateInstance="True" CorrelatesWith="[calculatorIdHandle]" DisplayName="ReceiveMultiply" sap2010:WorkflowViewState.IdRef="Receive_3" OperationName="Multiply" ServiceContractName="ICalculator">
               <p:Receive.CorrelatesOn>
                 <p:XPathMessageQuery x:Key="CalcId">
                   <p:XPathMessageQuery.Namespaces>
@@ -138,12 +139,12 @@
                 <InArgument x:TypeArguments="x:Double">[CurrentValue * InputValue]</InArgument>
               </Assign.Value>
             </Assign>
-            <Persist sap2010:WorkflowViewState.IdRef="Persist_3" />
+            <p:SendReply Request="{x:Reference __ReferenceID2}" DisplayName="SendReplyToReceiveMultiply" sap2010:WorkflowViewState.IdRef="SendReply_4" PersistBeforeSend="True" />
           </Sequence>
         </PickBranch>
         <PickBranch sap2010:WorkflowViewState.IdRef="PickBranch_4">
           <PickBranch.Trigger>
-            <p:Receive CanCreateInstance="True" DisplayName="ReceiveDivide" sap2010:WorkflowViewState.IdRef="Receive_4" OperationName="Divide" ServiceContractName="ICalculator">
+            <p:Receive x:Name="__ReferenceID4" CanCreateInstance="True" DisplayName="ReceiveDivide" sap2010:WorkflowViewState.IdRef="Receive_4" OperationName="Divide" ServiceContractName="ICalculator">
               <p:Receive.CorrelatesOn>
                 <p:XPathMessageQuery x:Key="CalcId">
                   <p:XPathMessageQuery.Namespaces>
@@ -152,6 +153,15 @@
                     </ssx:XPathMessageContextMarkup>
                   </p:XPathMessageQuery.Namespaces>sm:body()/xgSc:Divide/xgSc:CalculatorId</p:XPathMessageQuery>
               </p:Receive.CorrelatesOn>
+              <p:Receive.CorrelationInitializers>
+                <p:RequestReplyCorrelationInitializer>
+                  <p:RequestReplyCorrelationInitializer.CorrelationHandle>
+                    <InArgument x:TypeArguments="p:CorrelationHandle">
+                      <VariableValue x:TypeArguments="p:CorrelationHandle" Variable="{x:Reference __ReferenceID3}" />
+                    </InArgument>
+                  </p:RequestReplyCorrelationInitializer.CorrelationHandle>
+                </p:RequestReplyCorrelationInitializer>
+              </p:Receive.CorrelationInitializers>
               <p:ReceiveParametersContent>
                 <OutArgument x:TypeArguments="x:Double" x:Key="Value">[InputValue]</OutArgument>
                 <OutArgument x:TypeArguments="x:String" x:Key="CalculatorId" />
@@ -167,12 +177,12 @@
                 <InArgument x:TypeArguments="x:Double">[CurrentValue / InputValue]</InArgument>
               </Assign.Value>
             </Assign>
-            <Persist sap2010:WorkflowViewState.IdRef="Persist_4" />
+            <p:SendReply Request="{x:Reference __ReferenceID4}" DisplayName="SendReplyToReceiveDivide" sap2010:WorkflowViewState.IdRef="SendReply_5" PersistBeforeSend="True" />
           </Sequence>
         </PickBranch>
         <PickBranch sap2010:WorkflowViewState.IdRef="PickBranch_5">
           <PickBranch.Trigger>
-            <p:Receive x:Name="__ReferenceID0" CanCreateInstance="True" CorrelatesWith="[calculatorIdHandle]" DisplayName="ReceiveEquals" sap2010:WorkflowViewState.IdRef="Receive_5" OperationName="Equals" ServiceContractName="ICalculator">
+            <p:Receive x:Name="__ReferenceID5" CanCreateInstance="True" CorrelatesWith="[calculatorIdHandle]" DisplayName="ReceiveEquals" sap2010:WorkflowViewState.IdRef="Receive_5" OperationName="Equals" ServiceContractName="ICalculator">
               <p:Receive.CorrelatesOn>
                 <p:XPathMessageQuery x:Key="CalcId">
                   <p:XPathMessageQuery.Namespaces>
@@ -186,7 +196,7 @@
               </p:ReceiveParametersContent>
             </p:Receive>
           </PickBranch.Trigger>
-          <p:SendReply Request="{x:Reference __ReferenceID0}" DisplayName="SendReplyToReceiveEquals" sap2010:WorkflowViewState.IdRef="SendReply_1" PersistBeforeSend="True">
+          <p:SendReply Request="{x:Reference __ReferenceID5}" DisplayName="SendReplyToReceiveEquals" sap2010:WorkflowViewState.IdRef="SendReply_1" PersistBeforeSend="True">
             <p:SendParametersContent>
               <InArgument x:TypeArguments="x:Double" x:Key="Value">[CurrentValue]</InArgument>
             </p:SendParametersContent>
@@ -222,58 +232,58 @@
       </Pick>
     </While>
     <WriteLine sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Calculator Completed&quot;]" />
-    <sads:DebugSymbol.Symbol>d0RDOlxEZXZcQ29ycmVsYXRlZENhbGN1bGF0b3JcQ2FsY3VsYXRvclNlcnZpY2VcQ2FsY3VsYXRvclNlcnZpY2UueGFtbDctA+IBDgIBAS81Lz0CAQIxBd8BDQIBBeABBeABagIBAzU2NT0CAQY4B94BDgIBCTcYNyECAQfgAUPgAWcCAQQ5CVUWAgFCVglyFgIBNHMJjwEWAgEmkAEJrAEWAgEarQEJwgEWAgETwwEJ3QEWAgEKOw1IGQIBS0oLVBYCAUNYDWUZAgE9ZwtxFgIBNXUNggEZAgEvhAELjgEWAgEnkgENnwEZAgEjoQELqwEWAgEbrwENuwEZAgEXvQELwQEZAgEUxQEN0QEZAgEQ0wEL3AEWAgELRUdFUwIBTjtAO1YCAUxLDVIWAgFFUw1TRAIBRGJHYlMCAUBYQFhWAgE+aA1vFgIBN3ANcEQCATZ/R39TAgEydUB1VgIBMIUBDYwBFgIBKY0BDY0BRAIBKJwBR5wBUwIBJKIBDakBFgIBHaoBDaoBRAIBHK8BWK8BbgIBGL8BRL8BUgIBFcUBJ8UBPQIBEdQBDdsBFgIBDFA4UFMCAUhNOU1HAgFGbThtUwIBOmo5akcCATiKATiKAVMCASyHATmHAUcCASqnATinAVMCASCkATmkAUcCAR7ZATnZAUACAQ/WATrWAUMCAQ0=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d11jOlxHSVRcd29ya2Zsb3ctNC1ub2RlLWV4YW1wbGVzXENvcnJlbGF0ZWRDYWxjdWxhdG9yXENhbGN1bGF0b3JTZXJ2aWNlXENhbGN1bGF0b3JTZXJ2aWNlLnhhbWw4LQPsAQ4CAQEvNS89AgECMgXpAQ0CAQXqAQXqAWoCAQM2NjY9AgEGOQfoAQ4CAQk4GDghAgEH6gFD6gFnAgEEOglWFgIBRVcJcxYCATd0CZABFgIBKZEBCbYBFgIBGrcBCcwBFgIBE80BCecBFgIBCjwNSRkCAU5LC1UWAgFGWQ1mGQIBQGgLchYCATh2DYMBGQIBMoUBC48BFgIBKpMBDakBGQIBJasBC7UBFgIBG7kBDcUBGQIBF8cBC8sBGQIBFM8BDdsBGQIBEN0BC+YBFgIBC0ZHRlMCAVE8WDxuAgFPTA1TFgIBSFQNVK4BAgFHY0djUwIBQ1lYWW4CAUFpDXAWAgE6cQ1xswECATmAAUeAAVMCATV2WHZuAgEzhgENjQEWAgEsjgENjgGzAQIBK6YBR6YBUwIBJ6ABF6ABdgIBJqwBDbMBFgIBH7QBDbQBsQECARy5AVi5AW4CARjJAUTJAVICARXPASfPAT0CARHeAQ3lARYCAQxROFFTAgFLTjlORwIBSW44blMCAT1rOWtHAgE7iwE4iwFTAgEviAE5iAFHAgEtsQE4sQFTAgEirgE5rgFHAgEg4wE54wFAAgEP4AE64AFDAgEN</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Receive_1" sap:VirtualizedContainerService.HintSize="255,90" />
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Persist_1" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="264,246">
+      <sap2010:ViewStateData Id="Receive_1" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="255,60" />
+      <sap2010:ViewStateData Id="SendReply_2" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="277,310">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="PickBranch_1" sap:VirtualizedContainerService.HintSize="294,534" />
-      <sap2010:ViewStateData Id="Receive_2" sap:VirtualizedContainerService.HintSize="255,90" />
-      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Persist_2" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="264,246">
+      <sap2010:ViewStateData Id="PickBranch_1" sap:VirtualizedContainerService.HintSize="307,594" />
+      <sap2010:ViewStateData Id="Receive_2" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="255,60" />
+      <sap2010:ViewStateData Id="SendReply_3" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="277,310">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="PickBranch_2" sap:VirtualizedContainerService.HintSize="294,534" />
-      <sap2010:ViewStateData Id="Receive_3" sap:VirtualizedContainerService.HintSize="255,90" />
-      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Persist_3" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="264,246">
+      <sap2010:ViewStateData Id="PickBranch_2" sap:VirtualizedContainerService.HintSize="307,594" />
+      <sap2010:ViewStateData Id="Receive_3" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="255,60" />
+      <sap2010:ViewStateData Id="SendReply_4" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="277,310">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="PickBranch_3" sap:VirtualizedContainerService.HintSize="294,534" />
-      <sap2010:ViewStateData Id="Receive_4" sap:VirtualizedContainerService.HintSize="255,90" />
-      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Persist_4" sap:VirtualizedContainerService.HintSize="242,22" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="264,246">
+      <sap2010:ViewStateData Id="PickBranch_3" sap:VirtualizedContainerService.HintSize="307,594" />
+      <sap2010:ViewStateData Id="Receive_4" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="255,60" />
+      <sap2010:ViewStateData Id="SendReply_5" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="277,310">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="PickBranch_4" sap:VirtualizedContainerService.HintSize="294,534" />
-      <sap2010:ViewStateData Id="Receive_5" sap:VirtualizedContainerService.HintSize="255,90" />
-      <sap2010:ViewStateData Id="SendReply_1" sap:VirtualizedContainerService.HintSize="255,90" />
-      <sap2010:ViewStateData Id="PickBranch_5" sap:VirtualizedContainerService.HintSize="285,534" />
-      <sap2010:ViewStateData Id="Receive_6" sap:VirtualizedContainerService.HintSize="255,90" />
+      <sap2010:ViewStateData Id="PickBranch_4" sap:VirtualizedContainerService.HintSize="307,594" />
+      <sap2010:ViewStateData Id="Receive_5" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="SendReply_1" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="PickBranch_5" sap:VirtualizedContainerService.HintSize="285,594" />
+      <sap2010:ViewStateData Id="Receive_6" sap:VirtualizedContainerService.HintSize="255,86" />
       <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="242,60" />
       <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="264,184">
         <sap:WorkflowViewStateService.ViewState>
@@ -282,18 +292,18 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="PickBranch_6" sap:VirtualizedContainerService.HintSize="294,534" />
-      <sap2010:ViewStateData Id="Pick_1" sap:VirtualizedContainerService.HintSize="2069,580" />
-      <sap2010:ViewStateData Id="While_1" sap:VirtualizedContainerService.HintSize="2095,738" />
+      <sap2010:ViewStateData Id="PickBranch_6" sap:VirtualizedContainerService.HintSize="294,594" />
+      <sap2010:ViewStateData Id="Pick_1" sap:VirtualizedContainerService.HintSize="2121,640" />
+      <sap2010:ViewStateData Id="While_1" sap:VirtualizedContainerService.HintSize="2147,798" />
       <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="2095,61" />
-      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="2117,963">
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="2169,1023">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Microsoft.Samples.CorrelatedCalculator.CalculatorService.Calculator_1" sap:VirtualizedContainerService.HintSize="2157,1043" />
+      <sap2010:ViewStateData Id="Microsoft.Samples.CorrelatedCalculator.CalculatorService.Calculator_1" sap:VirtualizedContainerService.HintSize="2209,1103" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
