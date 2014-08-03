@@ -1,6 +1,6 @@
-var ActivityMarkup = require("workflow-4-node").activities.ActivityMarkup;
+var activityMarkup = require("workflow-4-node").activities.activityMarkup;
 
-module.exports = new ActivityMarkup().parse(
+module.exports = activityMarkup.parse(
     {
         workflow: {
             name: "calculator",

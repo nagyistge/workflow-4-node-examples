@@ -4,7 +4,6 @@ var connStr = "mongodb://localhost/calculator";
 
 var WorkflowHost = require("workflow-4-node").hosting.WorkflowHost;
 var MongoDDPersistence = require("workflow-4-node").hosting.mongoDB.MongoDDPersistence;
-
 var MemoryPersistence = require("workflow-4-node").hosting.MemoryPersistence;
 
 var persistence = new MongoDDPersistence({
@@ -17,7 +16,8 @@ var persistence = new MongoDDPersistence({
 
 var host = new WorkflowHost(
     {
-        persistence: persistence
+        persistence: persistence,
+        lazyPersistence: true
     });
 
 host.registerWorkflow(require("./calculatorWorkflow"));
