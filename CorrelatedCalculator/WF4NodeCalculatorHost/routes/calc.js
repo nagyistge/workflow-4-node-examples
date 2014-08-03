@@ -12,7 +12,7 @@ var callCalcMethod = function(methodName, req, res, inArg, outValue)
         return;
     }
 
-    console.log("Calling '" + methodName + "' on instance '" + id + "'" + (inArg ? (" with value: " + value) : "."));
+    //console.log("Calling '" + methodName + "' on instance '" + id + "'" + (inArg ? (" with value: " + value) : "."));
     try
     {
         host.invokeMethod("calculator", methodName, inArg ? { id: id, value: value } : { id: id })
@@ -21,12 +21,12 @@ var callCalcMethod = function(methodName, req, res, inArg, outValue)
             {
                 if (outValue)
                 {
-                    console.log("Sending: " + result);
+                    //console.log("Sending: " + result);
                     res.json(result);
                 }
                 else
                 {
-                    console.log("Done");
+                    //console.log("Done");
                     res.send();
                 }
             },
