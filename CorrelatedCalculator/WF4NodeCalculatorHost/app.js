@@ -8,20 +8,20 @@ var path = require('path');
 
 http.globalAgent.maxSockets = 10000;
 
-if (cluster.isMaster)
-{
-    // Fork workers.
-    for (var i = 0; i < numCPUs * 2; i++)
-    {
-        cluster.fork();
-    }
-
-    cluster.on('exit', function (worker, code, signal)
-    {
-        console.log('worker ' + worker.process.pid + ' died');
-    });
-}
-else
+//if (cluster.isMaster)
+//{
+//    // Fork workers.
+//    for (var i = 0; i < numCPUs * 2; i++)
+//    {
+//        cluster.fork();
+//    }
+//
+//    cluster.on('exit', function (worker, code, signal)
+//    {
+//        console.log('worker ' + worker.process.pid + ' died');
+//    });
+//}
+//else
 {
     var app = express();
 
@@ -54,3 +54,4 @@ else
     {
         console.log('Express server listening on port ' + app.get('port'));
     });
+}

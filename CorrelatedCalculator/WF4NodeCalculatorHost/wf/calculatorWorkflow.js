@@ -10,7 +10,7 @@ module.exports = activityMarkup.parse(
             args: [
                 {
                     while: {
-                        condition: "{ this.running }",
+                        condition: "# this.running",
                         body: {
                             pick: [
                                 {
@@ -28,7 +28,7 @@ module.exports = activityMarkup.parse(
                                             },
                                             {
                                                 assign: {
-                                                    value: "{ this.currentValue + this.inputArgs[0].value }",
+                                                    value: "# this.currentValue + this.inputArgs[0].value",
                                                     to: "currentValue"
                                                 }
                                             }
@@ -50,7 +50,7 @@ module.exports = activityMarkup.parse(
                                             },
                                             {
                                                 assign: {
-                                                    value: "{ this.currentValue - this.inputArgs[0].value }",
+                                                    value: "# this.currentValue - this.inputArgs[0].value",
                                                     to: "currentValue"
                                                 }
                                             }
@@ -72,7 +72,7 @@ module.exports = activityMarkup.parse(
                                             },
                                             {
                                                 assign: {
-                                                    value: "{ this.currentValue * this.inputArgs[0].value }",
+                                                    value: "# this.currentValue * this.inputArgs[0].value",
                                                     to: "currentValue"
                                                 }
                                             }
@@ -94,7 +94,7 @@ module.exports = activityMarkup.parse(
                                             },
                                             {
                                                 assign: {
-                                                    value: "{ this.currentValue / this.inputArgs[0].value }",
+                                                    value: "# this.currentValue / this.inputArgs[0].value",
                                                     to: "currentValue"
                                                 }
                                             }
@@ -107,7 +107,7 @@ module.exports = activityMarkup.parse(
                                         methodName: "equals",
                                         instanceIdPath: "[0].id",
                                         canCreateInstance: true,
-                                        result: "{ this.currentValue }"
+                                        result: "# this.currentValue"
                                     }
                                 },
                                 {
