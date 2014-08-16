@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<ProfilingTarget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ProjectTarget>
-    <TargetProject>83aac9f6-1094-40fc-8ce9-2ca0fe8ccbac</TargetProject>
-    <FriendlyName>WF4NodeCalculatorHost</FriendlyName>
-  </ProjectTarget>
-</ProfilingTarget>

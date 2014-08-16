@@ -1,3 +1,0 @@
-﻿# WF4NodeCalculatorHost
-
-
